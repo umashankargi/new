@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Followers' Entries</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+    }
+    header {
+      background-color: #2d3238;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 2em;
+    }
+    .search-container {
+      display: flex;
+      justify-content: center;
+      margin: 20px;
+    }
+    .search-container input {
+      width: 300px;
+      padding: 10px;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 8px 0 0 8px;
+    }
+    .search-container button {
+      padding: 10px 20px;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-left: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 0 8px 8px 0;
+      cursor: pointer;
+    }
+    .follower-card {
+      background: white;
+      margin: 20px auto;
+      width: 90%;
+      max-width: 700px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px;
+    }
+    .follower-info {
+      display: flex;
+      align-items: center;
+    }
+    .follower-info img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 15px;
+    }
+    .follower-name {
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+    .follower-quote {
+      font-size: 0.95em;
+      color: #555;
+    }
+    .follow-btn {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .follow-btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    New Followers' Entries
+  </header>
+
+  <div class="search-container">
+    <input type="text" placeholder="Search by name...">
+    <button>🔍</button>
+  </div>
+
+  <div class="follower-card">
+    <div class="follower-info">
+      <img src="https://via.placeholder.com/50" alt="Profile">
+      <div>
+        <div class="follower-name">Aahana Kulkarni</div>
+        <div class="follower-quote">I wish I could, but I don’t want to 😈</div>
+      </div>
+    </div>
+    <button class="follow-btn">Follow</button>
+  </div>
+
+</body>
+</html>
