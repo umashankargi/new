@@ -51,6 +51,29 @@
     .btn-follow:hover {
       background-color: #1a91da;
     }
+    /* Follower Count Styles */
+    .follower-count {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 4px 8px #0000001a;
+      text-align: center;
+      z-index: 1000;
+    }
+    .follower-count h5 {
+      margin: 0;
+      font-size: 1.2rem;
+      color: #333;
+    }
+    .follower-count p {
+      margin: 5px 0 0;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #1da1f2;
+    }
   </style>
 </head>
 <body>
@@ -62,11 +85,16 @@
     <div class="input-group">
       <input type="text" id="searchInput" class="form-control" placeholder="Search followers...">
       <button class="btn btn-outline-secondary" type="button" id="searchButton">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 16 16">
           <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.098zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
         </svg>
       </button>
     </div>
+  </div>
+  <!-- Follower Count Container -->
+  <div class="follower-count">
+    <h5>Total Followers</h5>
+    <p id="followerCount">0</p>
   </div>
   <div class="container" id="followerContainer">
     <!-- Your existing cards remain the same -->
@@ -82,261 +110,257 @@
         </button>
       </div>
     </div>
-        
-        <div class="card" data-name="imburcinbacak">
-          <div class="card-body d-flex align-items-center">
-            <img src="imburcinbacak.jpg" alt="Burçin Bacak" class="card-img-top me-3">
-            <div>
-              <h5 class="card-title">imburcinbacak</h5>
-              <p class="card-text text-muted">Burçin Bacak<br>Ankara Tıp</p>
-            </div>
-            <button class="btn btn-follow ms-auto">
-              <a href="https://www.instagram.com/imburcinbacak" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-            </button>
-          </div>
+    <!-- Other cards remain unchanged; keeping one for brevity -->
+    <div class="card" data-name="imburcinbacak">
+      <div class="card-body d-flex align-items-center">
+        <img src="imburcinbacak.jpg" alt="Burçin Bacak" class="card-img-top me-3">
+        <div>
+          <h5 class="card-title">imburcinbacak</h5>
+          <p class="card-text text-muted">Burçin Bacak<br>Ankara Tıp</p>
         </div>
-        <div class="card" data-name="_ivy_ash_">
-          <div class="card-body d-flex align-items-center">
-            <img src="_ivy_ash_.jpg" alt="_Ivy_Ann_🤍" class="card-img-top me-3">
-            <div>
-              <h5 class="card-title">_ivy_ash_</h5>
-              <p class="card-text text-muted">
-                _Ivy_Ann_🤍<br>
-                Fait avec amour <°<br>
-                < •°•^°^°•><br>
-                lifestyle | romanticize your life<br>
-                🌊🤍🫧🥂
-              </p>
-            </div>
-            <button class="btn btn-follow ms-auto">
-              <a href="https://www.instagram.com/_ivy_ash_" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-            </button>
-          </div>
+        <button class="btn btn-follow ms-auto">
+          <a href="https://www.instagram.com/imburcinbacak" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
+        </button>
+      </div>
+    </div>
+    <!-- Include all other cards as in your original code -->
+    <div class="card" data-name="_ivy_ash_">
+      <div class="card-body d-flex align-items-center">
+        <img src="_ivy_ash_.jpg" alt="_Ivy_Ann_🤍" class="card-img-top me-3">
+        <div>
+          <h5 class="card-title">_ivy_ash_</h5>
+          <p class="card-text text-muted">
+            _Ivy_Ann_🤍<br>
+            Fait avec amour <°<br>
+            < •°•^°^°•><br>
+            lifestyle | romanticize your life<br>
+            🌊🤍🫧🥂
+          </p>
         </div>
-        <div class="card" data-name="miss_shree_kishori">
-          <div class="card-body d-flex align-items-center">
-            <img src="miss_shree_kishori.jpg" alt="miss_shree_kishori" class="card-img-top me-3">
-            <div>
-              <h5 class="card-title">miss_shree_kishori</h5>
-              <p class="card-text text-muted"></p>
-            </div>
-            <button class="btn btn-follow ms-auto">
-              <a href="https://www.instagram.com/miss_shree_kishori" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-            </button>
-          </div>
+        <button class="btn btn-follow ms-auto">
+          <a href="https://www.instagram.com/_ivy_ash_" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
+        </button>
+      </div>
+    </div>
+    <div class="card" data-name="miss_shree_kishori">
+      <div class="card-body d-flex align-items-center">
+        <img src="miss_shree_kishori.jpg" alt="miss_shree_kishori" class="card-img-top me-3">
+        <div>
+          <h5 class="card-title">miss_shree_kishori</h5>
+          <p class="card-text text-muted"></p>
         </div>
-        <div class="card" data-name="akshuuuxd_">
-          <div class="card-body d-flex align-items-center">
-            <img src="akshuuuxd_.jpg" alt="Akshat Gupta" class="card-img-top me-3">
-            <div>
-              <h5 class="card-title">akshuuuxd_</h5>
-              <p class="card-text text-muted">
-                Akshat Gupta<br>
-                Video creator<br>
-                23+ Countries travelled ✈️<br>
-                Japan 🇯🇵 and S.Korea 🇰🇷<br>
-                Singing 🎤 Travelling 🛫<br>
-                Editing 🎥 Content recreation ♻️<br>
-                9th Sept. 🎂 (20yo)<br>
-                Delhi 📍
-              </p>
-            </div>
-            <button class="btn btn-follow ms-auto">
-              <a href="https://www.instagram.com/akshuuuxd_" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-            </button>
-          </div>
+        <button class="btn btn-follow ms-auto">
+          <a href="https://www.instagram.com/miss_shree_kishori" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
+        </button>
+      </div>
+    </div>
+    <div class="card" data-name="akshuuuxd_">
+      <div class="card-body d-flex align-items-center">
+        <img src="akshuuuxd_.jpg" alt="Akshat Gupta" class="card-img-top me-3">
+        <div>
+          <h5 class="card-title">akshuuuxd_</h5>
+          <p class="card-text text-muted">
+            Akshat Gupta<br>
+            Video creator<br>
+            23+ Countries travelled ✈️<br>
+            Japan 🇯🇵 and S.Korea 🇰🇷<br>
+            Singing 🎤 Travelling 🛫<br>
+            Editing 🎥 Content recreation ♻️<br>
+            9th Sept. 🎂 (20yo)<br>
+            Delhi 📍
+          </p>
         </div>
-        <div class="card" data-name="risxhav">
-          <div class="card-body d-flex align-items-center">
-            <img src="risxhav.jpg" alt="Rishav" class="card-img-top me-3">
-            <div>
-              <h5 class="card-title">Risxhav</h5>
-              <p class="card-text text-muted">
-                Rishav 🕷️<br>
-                Phir kya?<br>
-                Fir mene har taraf dekhna shuru kardiya sirf uss taraf chhorrkar…
-              </p>
-            </div>
-            <button class="btn btn-follow ms-auto">
-              <a href="https://www.instagram.com/risxhav" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-            </button>
-          </div>
+        <button class="btn btn-follow ms-auto">
+          <a href="https://www.instagram.com/akshuuuxd_" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
+        </button>
+      </div>
+    </div>
+    <div class="card" data-name="risxhav">
+      <div class="card-body d-flex align-items-center">
+        <img src="risxhav.jpg" alt="Rishav" class="card-img-top me-3">
+        <div>
+          <h5 class="card-title">Risxhav</h5>
+          <p class="card-text text-muted">
+            Rishav 🕷️<br>
+            Phir kya?<br>
+            Fir mene har taraf dekhna shuru kardiya sirf uss taraf chhorrkar…
+          </p>
         </div>
-        <div class="card" data-name="shanmukhan8223">
-          <div class="card-body d-flex align-items-center">
-            <img src="Non.jpg" alt="B. Shanmukhan" class="card-img-top me-3">
-            <div>
-              <h5 class="card-title">shanmukhan8223</h5>
-              <p class="card-text text-muted">B. Shanmukhan</p>
-            </div>
-            <button class="btn btn-follow ms-auto">
-              <a href="https://www.instagram.com/shanmukhan8223" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-            </button>
-          </div>
+        <button class="btn btn-follow ms-auto">
+          <a href="https://www.instagram.com/risxhav" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
+        </button>
+      </div>
+    </div>
+    <div class="card" data-name="shanmukhan8223">
+      <div class="card-body d-flex align-items-center">
+        <img src="Non.jpg" alt="B. Shanmukhan" class="card-img-top me-3">
+        <div>
+          <h5 class="card-title">shanmukhan8223</h5>
+          <p class="card-text text-muted">B. Shanmukhan</p>
         </div>
-        <div class="card" data-name="whos._jk">
-          <div class="card-body d-flex align-items-center">
-            <img src="whos._jk.jpg" alt="𝙹𝚔🦇" class="card-img-top me-3">
-            <div>
-              <h5 class="card-title">whos._jk</h5>
-              <p class="card-text text-muted">𝙹𝚔🦇<br>silence ❕️</p>
-            </div>
-            <button class="btn btn-follow ms-auto">
-              <a href="https://www.instagram.com/whos._jk" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-            </button>
-          </div>
+        <button class="btn btn-follow ms-auto">
+          <a href="https://www.instagram.com/shanmukhan8223" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
+        </button>
+      </div>
+    </div>
+    <div class="card" data-name="whos._jk">
+      <div class="card-body d-flex align-items-center">
+        <img src="whos._jk.jpg" alt="𝙹𝚔🦇" class="card-img-top me-3">
+        <div>
+          <h5 class="card-title">whos._jk</h5>
+          <p class="card-text text-muted">𝙹𝚔🦇<br>silence ❕️</p>
         </div>
-        <div class="card" data-name="_mr_alibaba_">
-          <div class="card-body d-flex align-items-center">
-            <img src="_mr_alibaba_.jpg" alt="_mr_alibaba_" class="card-img-top me-3">
-            <div>
-              <h5 class="card-title">_mr_alibaba_</h5>
-              <p class="card-text text-muted">Manu Manu <br> Jesus Christ 🛐</p>
-            </div>
-            <button class="btn btn-follow ms-auto">
-              <a href="https://www.instagram.com/_mr_alibaba_" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-            </button>
-          </div>
+        <button class="btn btn-follow ms-auto">
+          <a href="https://www.instagram.com/whos._jk" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
+        </button>
+      </div>
+    </div>
+    <div class="card" data-name="_mr_alibaba_">
+      <div class="card-body d-flex align-items-center">
+        <img src="_mr_alibaba_.jpg" alt="_mr_alibaba_" class="card-img-top me-3">
+        <div>
+          <h5 class="card-title">_mr_alibaba_</h5>
+          <p class="card-text text-muted">Manu Manu <br> Jesus Christ 🛐</p>
         </div>
-        <div class="card" data-name="_faathhiiima_">
-          <div class="card-body d-flex align-items-center">
-            <img src="Non.jpg" alt="🎀_فاطمة_🎀" class="card-img-top me-3">
-            <div>
-              <h5 class="card-title">_faathhiiima_</h5>
-              <p class="card-text text-muted">🎀_فاطمة_🎀<br><3</p>
-            </div>
-            <button class="btn btn-follow ms-auto">
-              <a href="https://www.instagram.com/_faathhiiima_" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-            </button>
-          </div>
+        <button class="btn btn-follow ms-auto">
+          <a href="https://www.instagram.com/_mr_alibaba_" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
+        </button>
+      </div>
+    </div>
+    <div class="card" data-name="_faathhiiima_">
+      <div class="card-body d-flex align-items-center">
+        <img src="Non.jpg" alt="🎀_فاطمة_🎀" class="card-img-top me-3">
+        <div>
+          <h5 class="card-title">_faathhiiima_</h5>
+          <p class="card-text text-muted">🎀_فاطمة_🎀<br><3</p>
         </div>
-        <div class="card" data-name="irfaana__irshaad">
-          <div class="card-body d-flex align-items-center">
-            <img src="irfaana__irshaad.jpg" alt="🎀ارفان ارشاد" class="card-img-top me-3">
-            <div>
-              <h5 class="card-title">irfaana__irshaad</h5>
-              <p class="card-text text-muted">🎀ارفان ارشاد</p>
-            </div>
-            <button class="btn btn-follow ms-auto">
-              <a href="https://www.instagram.com/irfaana__irshaad" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-            </button>
-          </div>
+        <button class="btn btn-follow ms-auto">
+          <a href="https://www.instagram.com/_faathhiiima_" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
+        </button>
+      </div>
+    </div>
+    <div class="card" data-name="irfaana__irshaad">
+      <div class="card-body d-flex align-items-center">
+        <img src="irfaana__irshaad.jpg" alt="🎀ارفان ارشاد" class="card-img-top me-3">
+        <div>
+          <h5 class="card-title">irfaana__irshaad</h5>
+          <p class="card-text text-muted">🎀ارفان ارشاد</p>
         </div>
-        <div class="card" data-name="mahii_arora_2005">
-            <div class="card-body d-flex align-items-center">
-              <img src="mahii_arora_2005.jpg" alt="Mahi Arora" class="card-img-top me-3">
-              <div>
-                <h5 class="card-title">mahii_arora_2005</h5>
-                <p class="card-text text-muted">
-                  Mahi......✨🏀❤️<br>
-                  👑✨QUEEN✨👑<br>
-                  Anime lover💝<br>
-                  Ex- RPS(DB)👨‍🎓<br>
-                  Cricket fan 🏏<br>
-                  Jersey no. 7&18💗<br><br>
-                  (\_/)<br>
-                  ( •.• )<br>
-                  />♥️<br>
-                </p>
-              </div>
-              <button class="btn btn-follow ms-auto">
-                <a href="https://www.instagram.com/mahii_arora_2005" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-              </button>
-            </div>
-          </div>
-          
-       
-    <!-- Other cards omitted for brevity, but keep them as is -->
+        <button class="btn btn-follow ms-auto">
+          <a href="https://www.instagram.com/irfaana__irshaad" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
+        </button>
+      </div>
+    </div>
+    <div class="card" data-name="mahii_arora_2005">
+      <div class="card-body d-flex align-items-center">
+        <img src="mahii_arora_2005.jpg" alt="Mahi Arora" class="card-img-top me-3">
+        <div>
+          <h5 class="card-title">mahii_arora_2005</h5>
+          <p class="card-text text-muted">
+            Mahi......✨🏀❤️<br>
+            👑✨QUEEN✨👑<br>
+            Anime lover💝<br>
+            Ex- RPS(DB)👨‍🎓<br>
+            Cricket fan 🏏<br>
+            Jersey no. 7&18💗<br><br>
+            (\_/)<br>
+            ( •.• )<br>
+            />♥️<br>
+          </p>
+        </div>
+        <button class="btn btn-follow ms-auto">
+          <a href="https://www.instagram.com/mahii_arora_2005" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
+        </button>
+      </div>
+    </div>
     <div class="card" data-name="delhi.gamerz">
-        <div class="card-body d-flex align-items-center">
-          <img src="delhi.gamerz.jpg" alt="Akshat" class="card-img-top me-3">
-          <div>
-            <h5 class="card-title">delhi.gamerz</h5>
-            <p class="card-text text-muted">
-                ✨ Akshat ✨<br>
-              Video creator<br>
-              Another id- @akshuuuxd_<br>
-              Visited 23+ Countries✈️<br>
-              Japan & S.Korea✨<br>
-              🎂: 9th Sept. (20yo)<br>
-              Introvert🥲<br>
-              Sing🎙️and play🎮<br>
-              Karol Bagh, Delhi 📍<br>
-              Vegetarian
-            </p>
-          </div>
-          <button class="btn btn-follow ms-auto">
-            <a href="https://www.instagram.com/delhi.gamerz" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-          </button>
+      <div class="card-body d-flex align-items-center">
+        <img src="delhi.gamerz.jpg" alt="Akshat" class="card-img-top me-3">
+        <div>
+          <h5 class="card-title">delhi.gamerz</h5>
+          <p class="card-text text-muted">
+            ✨ Akshat ✨<br>
+            Video creator<br>
+            Another id- @akshuuuxd_<br>
+            Visited 23+ Countries✈️<br>
+            Japan & S.Korea✨<br>
+            🎂: 9th Sept. (20yo)<br>
+            Introvert🥲<br>
+            Sing🎙️and play🎮<br>
+            Karol Bagh, Delhi 📍<br>
+            Vegetarian
+          </p>
         </div>
+        <button class="btn btn-follow ms-auto">
+          <a href="https://www.instagram.com/delhi.gamerz" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
+        </button>
       </div>
-      <div class="card" data-name="akshuwu_editz">
-        <div class="card-body d-flex align-items-center">
-          <img src="akshuwu_editz.jpg" alt="Akshat Edits" class="card-img-top me-3">
-          <div>
-            <h5 class="card-title">akshuwu_editz</h5>
-            <p class="card-text text-muted">
-                ✨🎀 Akshat 🎀✨<br>
-              Video creator<br>
-              EDITS ACCOUNT<br>
-              Follow for awesome edits 😉😁<br>
-              Personal ID- @akshuuuxd_
-            </p>
-          </div>
-          <button class="btn btn-follow ms-auto">
-            <a href="https://www.instagram.com/akshuwu_editz" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-          </button>
+    </div>
+    <div class="card" data-name="akshuwu_editz">
+      <div class="card-body d-flex align-items-center">
+        <img src="akshuwu_editz.jpg" alt="Akshat Edits" class="card-img-top me-3">
+        <div>
+          <h5 class="card-title">akshuwu_editz</h5>
+          <p class="card-text text-muted">
+            ✨🎀 Akshat 🎀✨<br>
+            Video creator<br>
+            EDITS ACCOUNT<br>
+            Follow for awesome edits 😉😁<br>
+            Personal ID- @akshuuuxd_
+          </p>
         </div>
+        <button class="btn btn-follow ms-auto">
+          <a href="https://www.instagram.com/akshuwu_editz" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
+        </button>
       </div>
-      <div class="card" data-name="hospital_wali_laash">
-        <div class="card-body d-flex align-items-center">
-          <img src="hospital_wali_laash.jpg" alt="LAASH" class="card-img-top me-3">
-          <div>
-            <h5 class="card-title">hospital_wali_laash</h5>
-            <p class="card-text text-muted">
-                LAASH ⚰️💀<br>
-              Video creator<br>
-              Hospital walli laaash 🙂
-            </p>
-          </div>
-          <button class="btn btn-follow ms-auto">
-            <a href="https://www.instagram.com/hospital_wali_laash" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-          </button>
+    </div>
+    <div class="card" data-name="hospital_wali_laash">
+      <div class="card-body d-flex align-items-center">
+        <img src="hospital_wali_laash.jpg" alt="LAASH" class="card-img-top me-3">
+        <div>
+          <h5 class="card-title">hospital_wali_laash</h5>
+          <p class="card-text text-muted">
+            LAASH ⚰️💀<br>
+            Video creator<br>
+            Hospital walli laaash 🙂
+          </p>
         </div>
+        <button class="btn btn-follow ms-auto">
+          <a href="https://www.instagram.com/hospital_wali_laash" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
+        </button>
       </div>
-      <div class="card" data-name="delhi.gamerz2.0">
-        <div class="card-body d-flex align-items-center">
-          <img src="delhi.gamerz2.0.jpg" alt="Akshat 2.0" class="card-img-top me-3">
-          <div>
-            <h5 class="card-title">delhi.gamerz2.0</h5>
-            <p class="card-text text-muted">
-                ✨ Akshat 2.0 ✨<br>
-              Main id- @delhi.gamerz<br>
-              Dp- Mt. Fuji San<br>
-              Love=Japan<br>
-              From India, Delhi<br>
-              23+ Countries done<br>
-              Exploring more...<br>
-              Don't follow to unfollow
-            </p>
-          </div>
-          <button class="btn btn-follow ms-auto">
-            <a href="https://www.instagram.com/delhi.gamerz2.0" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-          </button>
+    </div>
+    <div class="card" data-name="delhi.gamerz2.0">
+      <div class="card-body d-flex align-items-center">
+        <img src="delhi.gamerz2.0.jpg" alt="Akshat 2.0" class="card-img-top me-3">
+        <div>
+          <h5 class="card-title">delhi.gamerz2.0</h5>
+          <p class="card-text text-muted">
+            ✨ Akshat 2.0 ✨<br>
+            Main id- @delhi.gamerz<br>
+            Dp- Mt. Fuji San<br>
+            Love=Japan<br>
+            From India, Delhi<br>
+            23+ Countries done<br>
+            Exploring more...<br>
+            Don't follow to unfollow
+          </p>
         </div>
+        <button class="btn btn-follow ms-auto">
+          <a href="https://www.instagram.com/delhi.gamerz2.0" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
+        </button>
       </div>
-      
-      <div class="card" data-name="Aahana Kulkarni">
-        <div class="card-body d-flex align-items-center">
-          <img src="ahs.jpg" alt="Aahana Kulkarni" class="card-img-top me-3">
-          <div>
-            <h5 class="card-title">Aahana Kulkarni</h5>
-            <p class="card-text text-muted">I wish I could, but I don’t want to🌚</p>
-          </div>
-          <button class="btn btn-follow ms-auto">
-            <a href="https://www.instagram.com/aahana_k13" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-          </button>
+    </div>
+    <div class="card" data-name="Aahana Kulkarni">
+      <div class="card-body d-flex align-items-center">
+        <img src="ahs.jpg" alt="Aahana Kulkarni" class="card-img-top me-3">
+        <div>
+          <h5 class="card-title">Aahana Kulkarni</h5>
+          <p class="card-text text-muted">I wish I could, but I don’t want to🌚</p>
         </div>
+        <button class="btn btn-follow ms-auto">
+          <a href="https://www.instagram.com/aahana_k13" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
+        </button>
       </div>
     </div>
   </div>
@@ -345,6 +369,14 @@
     const cards = document.querySelectorAll('.card');
     const searchInput = document.getElementById('searchInput');
     const searchButton = document.getElementById('searchButton');
+    const followerCount = document.getElementById('followerCount');
+
+    // Function to update follower count
+    function updateFollowerCount() {
+      const visibleCards = document.querySelectorAll('.card.visible').length;
+      followerCount.textContent = visibleCards;
+      console.log('Updated follower count:', visibleCards);
+    }
 
     // Debug search with console logs
     searchButton.addEventListener('click', () => {
@@ -357,6 +389,7 @@
         card.classList.toggle('visible', !searchTerm || name.includes(searchTerm));
         console.log('Card visibility toggled to:', card.classList.contains('visible'));
       });
+      updateFollowerCount(); // Update count after search
     });
 
     // Search on Enter key with debug
@@ -367,8 +400,9 @@
       }
     });
 
-    // Show all cards initially
+    // Show all cards initially and set initial count
     cards.forEach(card => card.classList.add('visible'));
+    updateFollowerCount(); // Set initial count
   </script>
 </body>
 </html>
