@@ -53,24 +53,26 @@
     }
     /* Follower Count Styles */
     .follower-count {
-      position: fixed;
+      position: fixed !important;
       top: 20px;
       right: 20px;
       background-color: #ffffff;
       border-radius: 10px;
-      padding: 15px;
+      padding: 10px;
       box-shadow: 0 4px 8px #0000001a;
       text-align: center;
       z-index: 1000;
+      transform: none !important;
+      will-change: auto;
     }
     .follower-count h5 {
       margin: 0;
-      font-size: 1.2rem;
+      font-size: 0.9rem;
       color: #333;
     }
     .follower-count p {
       margin: 5px 0 0;
-      font-size: 1.5rem;
+      font-size: 1.1rem;
       font-weight: bold;
       color: #1da1f2;
     }
