@@ -3,429 +3,726 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Entry's New Followers</title>
+  <title>Entry's New Followers | Professional Instagram Follower Management</title>
+  <meta name="description" content="View and manage your new Instagram followers with Entry's professional follower tracking system">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    :root {
+      --primary-color: #405DE6;
+      --secondary-color: #5851DB;
+      --accent-color: #FD1D1D;
+      --text-color: #262626;
+      --light-bg: #f8f9fa;
+      --card-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+    
     body {
-      background-color: #f8f9fa;
-      font-family: 'Arial', sans-serif;
+      background-color: var(--light-bg);
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text-color);
     }
+    
     .header {
-      background-color: #F7F7F7;
-      color: rgb(8, 8, 8);
-      padding: 20px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 25px 0;
       text-align: center;
+      position: relative;
     }
+    
+    .logo-container {
+      margin-bottom: 15px;
+    }
+    
     .logo {
-      width: 50px;
-      height: auto;
-    }
-    .search-bar {
-      max-width: 500px;
-      margin: 20px auto;
-    }
-    .card {
-      margin: 10px 0;
-      border: none;
-      box-shadow: 0 4px 8px #0000001a;
-      border-radius: 10px;
-      display: none; /* Hidden by default */
-    }
-    .card.visible {
-      display: block !important; /* Force visibility */
-    }
-    .card-img-top {
       width: 60px;
       height: 60px;
       border-radius: 50%;
       object-fit: cover;
+      border: 2px solid white;
     }
-    .btn-follow {
-      background-color: #1da1f2;
+    
+    .header h1 {
+      font-weight: 600;
+      margin-bottom: 10px;
+      font-size: 1.8rem;
+    }
+    
+    .search-container {
+      max-width: 600px;
+      margin: 30px auto;
+      position: relative;
+    }
+    
+    .search-input {
+      padding-left: 40px;
+      border-radius: 25px;
+      border: 1px solid #ddd;
+      box-shadow: var(--card-shadow);
+    }
+    
+    .search-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #999;
+    }
+    
+    .card {
+      margin-bottom: 15px;
       border: none;
-      padding: 5px 15px;
-      border-radius: 20px;
-      text-decoration: none;
+      border-radius: 12px;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.3s ease;
+      overflow: hidden;
+    }
+    
+    .card:hover {
+      transform: translateY(-3px);
+    }
+    
+    .card-body {
+      padding: 15px;
+    }
+    
+    .profile-img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #f0f0f0;
+    }
+    
+    .profile-info {
+      flex: 1;
+      padding-left: 15px;
+      overflow: hidden;
+    }
+    
+    .profile-name {
+      font-weight: 600;
+      margin-bottom: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .profile-username {
+      color: #8e8e8e;
+      font-size: 0.9rem;
+      margin-bottom: 5px;
+    }
+    
+    .profile-bio {
+      color: #555;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    
+    .btn-follow {
+      background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+      border: none;
+      padding: 8px 20px;
+      border-radius: 25px;
+      color: white;
+      font-weight: 500;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+    
+    .btn-follow:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(253, 29, 29, 0.3);
       color: white;
     }
-    .btn-follow:hover {
-      background-color: #1a91da;
-    }
-    /* Follower Count Styles */
-    .follower-count {
-      position: fixed !important;
+    
+    .follower-counter {
+      position: fixed;
       top: 20px;
       right: 20px;
-      background-color: #ffffff;
-      border-radius: 10px;
-      padding: 5px;
-      box-shadow: 0 4px 8px #0000001a;
-      text-align: center;
+      background: white;
+      border-radius: 50px;
+      padding: 8px 15px;
+      box-shadow: var(--card-shadow);
+      display: flex;
+      align-items: center;
       z-index: 1000;
-      transform: none !important;
-      will-change: auto;
     }
-    .follower-count h5 {
-      margin: 0;
-      font-size: 0.7rem;
-      color: #333;
+    
+    .counter-icon {
+      margin-right: 8px;
+      color: var(--primary-color);
     }
-    .follower-count p {
-      margin: 5px 0 0;
-      font-size: 0.9rem;
-      font-weight: bold;
-      color: #1da1f2;
+    
+    .counter-number {
+      font-weight: 600;
+      color: var(--text-color);
     }
-    /* New Button Style */
+    
     .btn-add-account {
-      background-color: #333;
+      background-color: var(--text-color);
       border: none;
-      padding: 10px 20px;
-      border-radius: 20px;
+      padding: 10px 25px;
+      border-radius: 25px;
       color: white;
-      text-decoration: none;
-      margin-top: 10px;
-      display: inline-block;
+      font-weight: 500;
+      margin-top: 15px;
+      display: inline-flex;
+      align-items: center;
+      transition: all 0.3s ease;
     }
+    
     .btn-add-account:hover {
-      background-color: #1f1f1f;
+      background-color: #111;
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    .btn-add-account i {
+      margin-right: 8px;
+    }
+    
+    .footer {
+      background-color: white;
+      padding: 20px 0;
+      text-align: center;
+      margin-top: 30px;
+    }
+    
+    .footer-links {
+      margin-top: 15px;
+    }
+    
+    .footer-links a {
+      color: #8e8e8e;
+      margin: 0 10px;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    
+    .footer-links a:hover {
+      color: var(--primary-color);
+    }
+    
+    .no-results {
+      text-align: center;
+      padding: 40px;
+      color: #8e8e8e;
+      display: none;
+    }
+    
+    .loading-spinner {
+      display: none;
+      text-align: center;
+      padding: 20px;
+    }
+    
+    /* AI Chatbot Styles */
+    .chatbot-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 350px;
+      z-index: 1000;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+    
+    .chatbot-header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 12px 15px;
+      border-radius: 15px 15px 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+    
+    .chatbot-header h5 {
+      margin: 0;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+    }
+    
+    .chatbot-header i {
+      margin-right: 8px;
+    }
+    
+    .chatbot-body {
+      background-color: white;
+      border-radius: 0 0 15px 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    
+    .chatbot-body.active {
+      max-height: 400px;
+      padding: 15px;
+    }
+    
+    .chatbot-messages {
+      height: 300px;
+      overflow-y: auto;
+      margin-bottom: 15px;
+      padding-right: 5px;
+    }
+    
+    .message {
+      margin-bottom: 10px;
+      padding: 8px 12px;
+      border-radius: 18px;
+      max-width: 80%;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+    
+    .bot-message {
+      background-color: #f0f0f0;
+      border-radius: 18px 18px 18px 4px;
+      align-self: flex-start;
+    }
+    
+    .user-message {
+      background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+      color: white;
+      border-radius: 18px 18px 4px 18px;
+      margin-left: auto;
+    }
+    
+    .chatbot-input {
+      display: flex;
+    }
+    
+    .chatbot-input input {
+      flex: 1;
+      padding: 10px 15px;
+      border: 1px solid #ddd;
+      border-radius: 25px;
+      outline: none;
+      font-size: 0.9rem;
+    }
+    
+    .chatbot-input button {
+      background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      margin-left: 8px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    
+    .chatbot-input button:hover {
+      transform: scale(1.05);
+    }
+    
+    .chatbot-toggle {
+      background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      z-index: 1001;
+    }
+    
+    .chatbot-toggle i {
+      font-size: 1.5rem;
+    }
+    
+    .chatbot-container.collapsed {
+      display: none;
+    }
+    
+    @media (max-width: 768px) {
+      .profile-img {
+        width: 60px;
+        height: 60px;
+      }
+      
+      .header h1 {
+        font-size: 1.5rem;
+      }
+      
+      .btn-follow {
+        padding: 6px 15px;
+        font-size: 0.7rem;
+      }
+      
+      .chatbot-container {
+        width: 90%;
+        right: 5%;
+        bottom: 10px;
+      }
+      
+      .chatbot-toggle {
+        width: 50px;
+        height: 50px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="header">
-    <a href="https://instagram.com/new.followers.entrys.in" target="_blank">
-      <img src="logg.png" alt="Entry's Logo" class="logo">
-    </a>
-    <h1>New followers Entry's</h1>
-    <a href="https://instagram.com/new.followers.entrys.in" target="_blank" class="btn-add-account">Follow to Add Account</a>
-  </div>
-  <div class="search-bar">
-    <div class="input-group">
-      <input type="text" id="searchInput" class="form-control" placeholder="Search followers...">
-      <button class="btn btn-outline-secondary" type="button" id="searchButton">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 16 16">
-          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.098zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-        </svg>
-      </button>
+    <div class="container">
+      <div class="logo-container">
+        <a href="https://instagram.com/new.followers.entrys.in" target="_blank">
+          <img src="logg.png" alt="Entry's Logo" class="logo">
+        </a>
+      </div>
+      <h1>Entry's New Followers</h1>
+      <p class="mb-0">Professional Instagram Follower Management</p>
+      <a href="https://instagram.com/new.followers.entrys.in" target="_blank" class="btn-add-account">
+        <i class="fas fa-user-plus"></i> Follow to Add Account
+      </a>
     </div>
   </div>
-  <!-- Follower Count Container -->
-  <div class="follower-count">
-    <h5>Total Followers</h5>
-    <p id="followerCount">0</p>
+
+  <div class="follower-counter">
+    <i class="fas fa-users counter-icon"></i>
+    <span class="counter-number" id="followerCount">0</span>
   </div>
-  <div class="container" id="followerContainer">
-    <div class="card" data-name="y1ne.x">
-      <div class="card-body d-flex align-items-center">
-        <img src="Non.jpg" alt="전지연" class="card-img-top me-3">
-        <div>
-          <h5 class="card-title">y1ne.x</h5>
-          <p class="card-text text-muted">전지연</p>
-        </div>
-        <button class="btn btn-follow ms-auto">
-          <a href="https://www.instagram.com/y1ne.x" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-        </button>
-      </div>
+
+  <div class="container">
+    <div class="search-container">
+      <i class="fas fa-search search-icon"></i>
+      <input type="text" id="searchInput" class="form-control search-input" placeholder="Search followers by username...">
     </div>
-    <div class="card" data-name="imburcinbacak">
-      <div class="card-body d-flex align-items-center">
-        <img src="imburcinbacak.jpg" alt="Burçin Bacak" class="card-img-top me-3">
-        <div>
-          <h5 class="card-title">imburcinbacak</h5>
-          <p class="card-text text-muted">Burçin Bacak<br>Ankara Tıp</p>
-        </div>
-        <button class="btn btn-follow ms-auto">
-          <a href="https://www.instagram.com/imburcinbacak" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-        </button>
-      </div>
-    </div>
-    <div class="card" data-name="_ivy_ash_">
-      <div class="card-body d-flex align-items-center">
-        <img src="_ivy_ash_.jpg" alt="_Ivy_Ann_🤍" class="card-img-top me-3">
-        <div>
-          <h5 class="card-title">_ivy_ash_</h5>
-          <p class="card-text text-muted">
-            _Ivy_Ann_🤍<br>
-            Fait avec amour <°<br>
-            < •°•^°^°•><br>
-            lifestyle | romanticize your life<br>
-            🌊🤍🫧🥂
-          </p>
-        </div>
-        <button class="btn btn-follow ms-auto">
-          <a href="https://www.instagram.com/_ivy_ash_" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-        </button>
-      </div>
-    </div>
-    <div class="card" data-name="miss_shree_kishori">
-      <div class="card-body d-flex align-items-center">
-        <img src="miss_shree_kishori.jpg" alt="miss_shree_kishori" class="card-img-top me-3">
-        <div>
-          <h5 class="card-title">miss_shree_kishori</h5>
-          <p class="card-text text-muted"></p>
-        </div>
-        <button class="btn btn-follow ms-auto">
-          <a href="https://www.instagram.com/miss_shree_kishori" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-        </button>
-      </div>
-    </div>
-    <div class="card" data-name="akshuuuxd_">
-      <div class="card-body d-flex align-items-center">
-        <img src="akshuuuxd_.jpg" alt="Akshat Gupta" class="card-img-top me-3">
-        <div>
-          <h5 class="card-title">akshuuuxd_</h5>
-          <p class="card-text text-muted">
-            Akshat Gupta<br>
-            Video creator<br>
-            23+ Countries travelled ✈️<br>
-            Japan 🇯🇵 and S.Korea 🇰🇷<br>
-            Singing 🎤 Travelling 🛫<br>
-            Editing 🎥 Content recreation ♻️<br>
-            9th Sept. 🎂 (20yo)<br>
-            Delhi 📍
-          </p>
-        </div>
-        <button class="btn btn-follow ms-auto">
-          <a href="https://www.instagram.com/akshuuuxd_" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-        </button>
-      </div>
-    </div>
-    <div class="card" data-name="risxhav">
-      <div class="card-body d-flex align-items-center">
-        <img src="risxhav.jpg" alt="Rishav" class="card-img-top me-3">
-        <div>
-          <h5 class="card-title">Risxhav</h5>
-          <p class="card-text text-muted">
-            Rishav 🕷️<br>
-            Phir kya?<br>
-            Fir mene har taraf dekhna shuru kardiya sirf uss taraf chhorrkar…
-          </p>
-        </div>
-        <button class="btn btn-follow ms-auto">
-          <a href="https://www.instagram.com/risxhav" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-        </button>
+    
+    <div class="loading-spinner" id="loadingSpinner">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
       </div>
     </div>
     
-    <div class="card" data-name="whos._jk">
-      <div class="card-body d-flex align-items-center">
-        <img src="whos._jk.jpg" alt="𝙹𝚔🦇" class="card-img-top me-3">
-        <div>
-          <h5 class="card-title">whos._jk</h5>
-          <p class="card-text text-muted">𝙹𝚔🦇<br>silence ❕️</p>
-        </div>
-        <button class="btn btn-follow ms-auto">
-          <a href="https://www.instagram.com/whos._jk" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-        </button>
-      </div>
+    <div class="no-results" id="noResults">
+      <i class="fas fa-user-slash fa-3x mb-3"></i>
+      <h5>No followers found</h5>
+      <p>Try a different search term</p>
     </div>
-    <div class="card" data-name="_mr_alibaba_">
-      <div class="card-body d-flex align-items-center">
-        <img src="_mr_alibaba_.jpg" alt="_mr_alibaba_" class="card-img-top me-3">
-        <div>
-          <h5 class="card-title">_mr_alibaba_</h5>
-          <p class="card-text text-muted">Manu Manu <br> Jesus Christ 🛐</p>
-        </div>
-        <button class="btn btn-follow ms-auto">
-          <a href="https://www.instagram.com/_mr_alibaba_" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-        </button>
-      </div>
+    
+    <div id="followerContainer">
+      <!-- Follower cards will be inserted here by JavaScript -->
     </div>
-    <div class="card" data-name="_faathhiiima_">
-      <div class="card-body d-flex align-items-center">
-        <img src="Non.jpg" alt="🎀_فاطمة_🎀" class="card-img-top me-3">
-        <div>
-          <h5 class="card-title">_faathhiiima_</h5>
-          <p class="card-text text-muted">🎀_فاطمة_🎀<br><3</p>
-        </div>
-        <button class="btn btn-follow ms-auto">
-          <a href="https://www.instagram.com/_faathhiiima_" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-        </button>
-      </div>
-    </div>
-    <div class="card" data-name="irfaana__irshaad">
-      <div class="card-body d-flex align-items-center">
-        <img src="irfaana__irshaad.jpg" alt="🎀ارفان ارشاد" class="card-img-top me-3">
-        <div>
-          <h5 class="card-title">irfaana__irshaad</h5>
-          <p class="card-text text-muted">🎀ارفان ارشاد</p>
-        </div>
-        <button class="btn btn-follow ms-auto">
-          <a href="https://www.instagram.com/irfaana__irshaad" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-        </button>
-      </div>
-    </div>
-    <div class="card" data-name="mahii_arora_2005">
-      <div class="card-body d-flex align-items-center">
-        <img src="mahii_arora_2005.jpg" alt="Mahi Arora" class="card-img-top me-3">
-        <div>
-          <h5 class="card-title">mahii_arora_2005</h5>
-          <p class="card-text text-muted">
-            Mahi......✨🏀❤️<br>
-            👑✨QUEEN✨👑<br>
-            Anime lover💝<br>
-            Ex- RPS(DB)👨‍🎓<br>
-            Cricket fan 🏏<br>
-            Jersey no. 7&18💗<br><br>
-            (\_/)<br>
-            ( •.• )<br>
-            />♥️<br>
-          </p>
-        </div>
-        <button class="btn btn-follow ms-auto">
-          <a href="https://www.instagram.com/mahii_arora_2005" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-        </button>
-      </div>
-    </div>
-    <div class="card" data-name="delhi.gamerz">
-      <div class="card-body d-flex align-items-center">
-        <img src="delhi.gamerz.jpg" alt="Akshat" class="card-img-top me-3">
-        <div>
-          <h5 class="card-title">delhi.gamerz</h5>
-          <p class="card-text text-muted">
-            ✨ Akshat ✨<br>
-            Video creator<br>
-            Another id- @akshuuuxd_<br>
-            Visited 23+ Countries✈️<br>
-            Japan & S.Korea✨<br>
-            🎂: 9th Sept. (20yo)<br>
-            Introvert🥲<br>
-            Sing🎙️and play🎮<br>
-            Karol Bagh, Delhi 📍<br>
-            Vegetarian
-          </p>
-        </div>
-        <button class="btn btn-follow ms-auto">
-          <a href="https://www.instagram.com/delhi.gamerz" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-        </button>
-      </div>
-    </div>
-    <div class="card" data-name="akshuwu_editz">
-      <div class="card-body d-flex align-items-center">
-        <img src="akshuwu_editz.jpg" alt="Akshat Edits" class="card-img-top me-3">
-        <div>
-          <h5 class="card-title">akshuwu_editz</h5>
-          <p class="card-text text-muted">
-            ✨🎀 Akshat 🎀✨<br>
-            Video creator<br>
-            EDITS ACCOUNT<br>
-            Follow for awesome edits 😉😁<br>
-            Personal ID- @akshuuuxd_
-          </p>
-        </div>
-        <button class="btn btn-follow ms-auto">
-          <a href="https://www.instagram.com/akshuwu_editz" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-        </button>
-      </div>
-    </div>
-    <div class="card" data-name="hospital_wali_laash">
-      <div class="card-body d-flex align-items-center">
-        <img src="hospital_wali_laash.jpg" alt="LAASH" class="card-img-top me-3">
-        <div>
-          <h5 class="card-title">hospital_wali_laash</h5>
-          <p class="card-text text-muted">
-            LAASH ⚰️💀<br>
-            Video creator<br>
-            Hospital walli laaash 🙂
-          </p>
-        </div>
-        <button class="btn btn-follow ms-auto">
-          <a href="https://www.instagram.com/hospital_wali_laash" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-        </button>
-      </div>
-    </div>
-    <div class="card" data-name="delhi.gamerz2.0">
-      <div class="card-body d-flex align-items-center">
-        <img src="delhi.gamerz2.0.jpg" alt="Akshat 2.0" class="card-img-top me-3">
-        <div>
-          <h5 class="card-title">delhi.gamerz2.0</h5>
-          <p class="card-text text-muted">
-            ✨ Akshat 2.0 ✨<br>
-            Main id- @delhi.gamerz<br>
-            Dp- Mt. Fuji San<br>
-            Love=Japan<br>
-            From India, Delhi<br>
-            23+ Countries done<br>
-            Exploring more...<br>
-            Don't follow to unfollow
-          </p>
-        </div>
-        <button class="btn btn-follow ms-auto">
-          <a href="https://www.instagram.com/delhi.gamerz2.0" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-        </button>
-      </div>
-    </div>
-    <div class="card" data-name="Aahana Kulkarni">
-      <div class="card-body d-flex align-items-center">
-        <img src="ahs.jpg" alt="Aahana Kulkarni" class="card-img-top me-3">
-        <div>
-          <h5 class="card-title">Aahana Kulkarni</h5>
-          <p class="card-text text-muted">I wish I could, but I don’t want to🌚</p>
-        </div>
-        <button class="btn btn-follow ms-auto">
-          <a href="https://www.instagram.com/aahana_k13" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-        </button>
-      </div>
-    </div>
-    <div class="card" data-name="laugh bro it's healty">
-      <div class="card-body d-flex align-items-center">
-        <img src="laugh_bro_it_healthy.jpg" alt="Aahana Kulkarni" class="card-img-top me-3">
-        <div>
-          <h5 class="card-title">laugh bro it's healty</h5>
-          <p class="card-text text-muted">
-laugh bro it's healthy<br>
-laugh bro it's healty
-</p>
-        </div>
-        <button class="btn btn-follow ms-auto">
-          <a href="https://www.instagram.com/aahana_k13" class="follow-link" target="_blank" style="color: white; text-decoration: none;">Follow</a>
-        </button>
-      </div>
-    </div>          
   </div>
-  <div class="header">
-    <a href="https://instagram.com/new.followers.entrys.in" target="_blank" class="btn-add-account">Follow to Add Account</a>
+
+  <div class="footer">
+    <div class="container">
+      <a href="https://instagram.com/new.followers.entrys.in" target="_blank" class="btn-add-account">
+        <i class="fas fa-user-plus"></i> Follow to Add Account
+      </a>
+      <div class="footer-links mt-3">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Contact Support</a>
+      </div>
+      <p class="text-muted mt-3 small">© 2025 Entry's New Followers. All rights reserved.</p>
+    </div>
   </div>
+
+  <!-- AI Chatbot -->
+  <button class="chatbot-toggle" id="chatbotToggle">
+    <i class="fas fa-robot"></i>
+  </button>
+  
+  <div class="chatbot-container collapsed" id="chatbotContainer">
+    <div class="chatbot-header" id="chatbotHeader">
+      <h5><i class="fas fa-robot"></i> Entry's Assistant</h5>
+      <i class="fas fa-times" id="chatbotClose"></i>
+    </div>
+    <div class="chatbot-body" id="chatbotBody">
+      <div class="chatbot-messages" id="chatbotMessages">
+        <div class="message bot-message">
+          Hi there! I'm Entry's AI assistant. How can I help you with your followers today?
+        </div>
+      </div>
+      <div class="chatbot-input">
+        <input type="text" id="chatbotInput" placeholder="Type your message...">
+        <button id="chatbotSend"><i class="fas fa-paper-plane"></i></button>
+      </div>
+    </div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    const cards = document.querySelectorAll('.card');
-    const searchInput = document.getElementById('searchInput');
-    const searchButton = document.getElementById('searchButton');
-    const followerCount = document.getElementById('followerCount');
+    // Sample follower data (in a real app, this would come from an API)
+    const followers = [
+  {
+    username: "y1ne.x",
+    name: "전지연",
+    bio: "",
+    image: "Non.jpg",
+    link: "https://www.instagram.com/y1ne.x"
+  },
+  {
+    username: "imburcinbacak",
+    name: "Burçin Bacak",
+    bio: "Ankara Tıp",
+    image: "imburcinbacak.jpg",
+    link: "https://www.instagram.com/imburcinbacak"
+  },
+  {
+    username: "_ivy_ash_",
+    name: "_Ivy_Ann_🤍",
+    bio: "Fait avec amour <°< •°•^°^°•> lifestyle | romanticize your life 🌊🤍🫧🥂",
+    image: "_ivy_ash_.jpg",
+    link: "https://www.instagram.com/_ivy_ash_"
+  },
+  {
+    username: "miss_shree_kishori",
+    name: "miss_shree_kishori",
+    bio: "",
+    image: "miss_shree_kishori.jpg",
+    link: "https://www.instagram.com/miss_shree_kishori"
+  },
+  {
+    username: "akshuuuxd_",
+    name: "Akshat Gupta",
+    bio: "Video creator 23+ Countries travelled ✈️ Japan 🇯🇵 and S.Korea 🇰🇷 Singing 🎤 Travelling 🛫 Editing 🎥 Content recreation ♻️ 9th Sept. 🎂 (20yo) Delhi 📍",
+    image: "akshuuuxd_.jpg",
+    link: "https://www.instagram.com/akshuuuxd_"
+  },
+  {
+    username: "risxhav",
+    name: "Rishav",
+    bio: "Rishav 🕷️ Phir kya? Fir mene har taraf dekhna shuru kardiya sirf uss taraf chhorrkar…",
+    image: "risxhav.jpg",
+    link: "https://www.instagram.com/risxhav"
+  },
+  {
+    username: "whos._jk",
+    name: "𝙹𝚔🦇",
+    bio: "silence ❕️",
+    image: "whos._jk.jpg",
+    link: "https://www.instagram.com/whos._jk"
+  },
+  {
+    username: "_mr_alibaba_",
+    name: "_mr_alibaba_",
+    bio: "Manu Manu Jesus Christ 🛐",
+    image: "_mr_alibaba_.jpg",
+    link: "https://www.instagram.com/_mr_alibaba_"
+  },
+  {
+    username: "_faathhiiima_",
+    name: "🎀_فاطمة_🎀",
+    bio: "<3",
+    image: "Non.jpg",
+    link: "https://www.instagram.com/_faathhiiima_"
+  },
+  {
+    username: "irfaana__irshaad",
+    name: "🎀ارفان ارشاد",
+    bio: "",
+    image: "irfaana__irshaad.jpg",
+    link: "https://www.instagram.com/irfaana__irshaad"
+  },
+  {
+    username: "mahii_arora_2005",
+    name: "Mahi Arora",
+    bio: "Mahi......✨🏀❤️ 👑✨QUEEN✨👑 Anime lover💝 Ex- RPS(DB)👨‍🎓 Cricket fan 🏏 Jersey no. 7&18💗 (\_/) ( •.• ) />♥️",
+    image: "mahii_arora_2005.jpg",
+    link: "https://www.instagram.com/mahii_arora_2005"
+  },
+  {
+    username: "delhi.gamerz",
+    name: "Akshat",
+    bio: "✨ Akshat ✨ Video creator Another id- @akshuuuxd_ Visited 23+ Countries✈️ Japan & S.Korea✨ 🎂: 9th Sept. (20yo) Introvert🥲 Sing🎙️and play🎮 Karol Bagh, Delhi 📍 Vegetarian",
+    image: "delhi.gamerz.jpg",
+    link: "https://www.instagram.com/delhi.gamerz"
+  },
+  {
+    username: "akshuwu_editz",
+    name: "Akshat Edits",
+    bio: "✨🎀 Akshat 🎀✨ Video creator EDITS ACCOUNT Follow for awesome edits 😉😁 Personal ID- @akshuuuxd_",
+    image: "akshuwu_editz.jpg",
+    link: "https://www.instagram.com/akshuwu_editz"
+  },
+  {
+    username: "hospital_wali_laash",
+    name: "LAASH",
+    bio: "LAASH ⚰️💀 Video creator Hospital walli laaash 🙂",
+    image: "hospital_wali_laash.jpg",
+    link: "https://www.instagram.com/hospital_wali_laash"
+  },
+  {
+    username: "delhi.gamerz2.0",
+    name: "Akshat 2.0",
+    bio: "✨ Akshat 2.0 ✨ Main id- @delhi.gamerz Dp- Mt. Fuji San Love=Japan From India, Delhi 23+ Countries done Exploring more... Don't follow to unfollow",
+    image: "delhi.gamerz2.0.jpg",
+    link: "https://www.instagram.com/delhi.gamerz2.0"
+  },
+  {
+    username: "Aahana Kulkarni",
+    name: "Aahana Kulkarni",
+    bio: "I wish I could, but I don’t want to🌚",
+    image: "ahs.jpg",
+    link: "https://www.instagram.com/aahana_k13"
+  },
+  {
+    username: "laugh bro it's healty",
+    name: "laugh bro it's healty",
+    bio: "laugh bro it's healthy laugh bro it's healty",
+    image: "laugh_bro_it_healthy.jpg",
+    link: "https://www.instagram.com/laugh_bro_it_healthy"
+  }
+];
 
-    // Function to update follower count
-    function updateFollowerCount() {
-      const visibleCards = document.querySelectorAll('.card.visible').length;
-      followerCount.textContent = visibleCards;
-      console.log('Updated follower count:', visibleCards);
+
+    const container = document.getElementById('followerContainer');
+    const searchInput = document.getElementById('searchInput');
+    const followerCount = document.getElementById('followerCount');
+    const noResults = document.getElementById('noResults');
+    const loadingSpinner = document.getElementById('loadingSpinner');
+
+    // Function to render followers
+    function renderFollowers(filter = '') {
+      loadingSpinner.style.display = 'block';
+      container.innerHTML = '';
+      
+      // Simulate loading delay
+      setTimeout(() => {
+        const filteredFollowers = followers.filter(follower => 
+          follower.username.toLowerCase().includes(filter.toLowerCase()) || 
+          follower.name.toLowerCase().includes(filter.toLowerCase())
+        );
+        
+        if (filteredFollowers.length === 0) {
+          noResults.style.display = 'block';
+        } else {
+          noResults.style.display = 'none';
+          filteredFollowers.forEach(follower => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+              <div class="card-body d-flex align-items-center">
+                <img src="${follower.image}" alt="${follower.name}" class="profile-img">
+                <div class="profile-info">
+                  <h5 class="profile-name">${follower.name}</h5>
+                  <p class="profile-username">@${follower.username}</p>
+                  ${follower.bio ? `<p class="profile-bio">${follower.bio}</p>` : ''}
+                </div>
+                <a href="${follower.link}" target="_blank" class="btn btn-follow ms-auto">
+                  Follow
+                </a>
+              </div>
+            `;
+            container.appendChild(card);
+          });
+        }
+        
+        followerCount.textContent = filteredFollowers.length;
+        loadingSpinner.style.display = 'none';
+      }, 500);
     }
 
-    // Debug search with console logs
-    searchButton.addEventListener('click', () => {
-      console.log('Search button clicked');
-      const searchTerm = searchInput.value.toLowerCase().trim();
-      console.log('Search term:', searchTerm);
-      cards.forEach(card => {
-        const name = card.getAttribute('data-name').toLowerCase();
-        console.log('Checking card with data-name:', name);
-        card.classList.toggle('visible', !searchTerm || name.includes(searchTerm));
-        console.log('Card visibility toggled to:', card.classList.contains('visible'));
-      });
-      updateFollowerCount(); // Update count after search
+    // Initial render
+    renderFollowers();
+
+    // Search functionality
+    searchInput.addEventListener('input', (e) => {
+      renderFollowers(e.target.value);
     });
 
-    // Search on Enter key with debug
-    searchInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        console.log('Enter key pressed');
-        searchButton.click();
+    // Add click event for all follow buttons
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('btn-follow')) {
+        console.log('Follow button clicked for:', e.target.parentElement.querySelector('.profile-username').textContent);
+        // Here you would typically track this action in your analytics
       }
     });
 
-    // Show all cards initially and set initial count
-    cards.forEach(card => card.classList.add('visible'));
-    updateFollowerCount(); // Set initial count
+    // Chatbot functionality
+    const chatbotToggle = document.getElementById('chatbotToggle');
+    const chatbotContainer = document.getElementById('chatbotContainer');
+    const chatbotHeader = document.getElementById('chatbotHeader');
+    const chatbotBody = document.getElementById('chatbotBody');
+    const chatbotClose = document.getElementById('chatbotClose');
+    const chatbotMessages = document.getElementById('chatbotMessages');
+    const chatbotInput = document.getElementById('chatbotInput');
+    const chatbotSend = document.getElementById('chatbotSend');
+
+    // Toggle chatbot visibility
+    chatbotToggle.addEventListener('click', () => {
+      chatbotContainer.classList.toggle('collapsed');
+      chatbotBody.classList.add('active');
+    });
+
+    chatbotHeader.addEventListener('click', () => {
+      chatbotBody.classList.toggle('active');
+    });
+
+    chatbotClose.addEventListener('click', (e) => {
+      e.stopPropagation();
+      chatbotContainer.classList.add('collapsed');
+    });
+
+    // Send message function
+    function sendMessage() {
+      const message = chatbotInput.value.trim();
+      if (message === '') return;
+      
+      // Add user message
+      addMessage(message, 'user');
+      chatbotInput.value = '';
+      
+      // Simulate bot response
+      setTimeout(() => {
+        const responses = [
+          "I can help you analyze your new followers. What would you like to know?",
+          "Interesting question! For follower analytics, I recommend checking the profile details.",
+          "I'm still learning about Instagram followers. Could you ask me something more specific?",
+          "To manage your followers effectively, consider tracking engagement rates.",
+          "Thanks for your message! How can I assist you with your Instagram growth?"
+        ];
+        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+        addMessage(randomResponse, 'bot');
+      }, 1000);
+    }
+
+    // Add message to chat
+    function addMessage(text, sender) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message ${sender}-message`;
+      messageDiv.textContent = text;
+      chatbotMessages.appendChild(messageDiv);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    // Event listeners for chatbot
+    chatbotSend.addEventListener('click', sendMessage);
+    chatbotInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+
+    // Initial bot greeting
+    setTimeout(() => {
+      addMessage("You can ask me about follower analytics, engagement tips, or Instagram growth strategies.", 'bot');
+    }, 1500);
   </script>
 </body>
 </html>
